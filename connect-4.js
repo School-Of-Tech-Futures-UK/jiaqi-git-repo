@@ -1,7 +1,7 @@
 
-const name1 = window.prompt('Player 1 please enter your name: ')
+const name1 = window.prompt('Player 1(red) please enter your name: ')
 document.getElementById('player1-name').innerText = name1
-const name2 = window.prompt('Player 2 please enter your name: ')
+const name2 = window.prompt('Player 2(yellow) please enter your name: ')
 document.getElementById('player2-name').innerText = name2
 
 // board as a multidimensional array where game moves will be stored
