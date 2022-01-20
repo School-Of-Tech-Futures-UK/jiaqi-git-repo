@@ -8,14 +8,14 @@ app.use(bodyParser.urlencoded({ extended: true })) // to support URL-encoded bod
 app.use(express.json()) // to support JSON-encoded bodies
 app.use(cors())
 
-const scores = { red: 0, yellow: 0 }
+const scores = []
+
 app.get('/connect-4', (req, res) => {
   res.json(scores)
 })
 
 app.post('/connect-4', (req, res) => {
-  scores.red = req.body.red
-  scores.yellow = req.body.yellow
+  scores.push(req.body)
   res.send(scores)
 })
 

@@ -1,11 +1,10 @@
+/* eslint-disable no-throw-literal */
 
-const name1 = window.prompt('Player 1(red) please enter your name: ')
-document.getElementById('player1-name').innerText = name1
-const name2 = window.prompt('Player 2(yellow) please enter your name: ')
-document.getElementById('player2-name').innerText = name2
+//const name1 = window.prompt('Player 1(red) please enter your name: ') + '(red)'
+//const name2 = window.prompt('Player 2(yellow) please enter your name: ') + '(yellow)'
 
 // board as a multidimensional array where game moves will be stored
-let grid = [
+const grid = [
   [null, null, null, null, null, null, null],
   [null, null, null, null, null, null, null],
   [null, null, null, null, null, null, null],
@@ -21,33 +20,18 @@ const gameState = {
   playerTurn: 'red',
   emptySpaces: 42,
   turn: 0,
-  winner: ''
+  winner: '',
+  redName: '',
+  yellowName: ''
+}
+
+function RecordNames (e) {
+  gameState.redName = document.getElementById('redName').value + " (Red)"
+  gameState.yellowName = document.getElementById('yellowName').value + " (Yellow)"
 }
 
 // Object to store scores
-const scores = { red: 0, yellow: 0 }
-
-// function to get scores from server
-async function fetchScores () {
-  const resp = await fetch('http://localhost:3000/connect-4')
-  const respJson = await resp.json()
-  scores.red = respJson.red
-  scores.yellow = respJson.yellow
-}
-fetchScores()
-
-// Function to post scores to the server
-async function postScores (scores) {
-  const resp = await fetch('http://localhost:3000/connect-4', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(scores)
-  })
-  const respJson = resp.json()
-  console.log('Success:', respJson)
-}
+const scores = { name: '', score: 0 }
 
 // Turn function
 function takeTurn (event) {
@@ -76,17 +60,26 @@ function takeTurn (event) {
     if (typeof winner !== 'string' || !['red', 'yellow', 'nobody'].includes(winner)) {
       throw "Expecting 'checkWinner' to return null or one of the strings 'red', 'yellow' or 'nobody'. Actually received: " + winner
     }
-    
+
     // update score and send to server
-    scores[winner] += gameState.emptySpaces
+    if (winner === 'red') {
+      scores.name = gameState.redName
+      scores.score = gameState.emptySpaces
+    } else if (winner === 'yellow') {
+      scores.name = gameState.yellowName
+      scores.score = gameState.emptySpaces
+    }
     postScores (scores)
+    fetchScores()
+    // scores[winner] += gameState.emptySpaces
     const winnerName = document.getElementById('winner-name')
     winnerName.innerText = winner
     const winnerDisplay = document.getElementById('winner-display')
     winnerDisplay.style.display = 'block'
-    document.getElementById('red-score').innerText = scores.red
-    document.getElementById('yellow-score').innerText = scores.yellow
-    document.getElementById('scoreboard').style.display = 'block'
+    winnerDisplay.style.backgroundColor = winner
+    // document.getElementById('red-score').innerText = scores.red
+    // document.getElementById('yellow-score').innerText = scores.yellow
+    // document.getElementById('scoreboard').style.display = 'block'
 
     for (let rowIndex = 0; rowIndex < row; rowIndex++) {
       for (let colIndex = 0; colIndex < column; colIndex++) {
@@ -95,7 +88,6 @@ function takeTurn (event) {
       }
     }
     console.log(gameState)
-    fetchScores()
   }
 }
 
@@ -177,7 +169,7 @@ function checkWinner (grid) {
 }
 
 // Reset grid when button is clicked
-function resetGrid(event) {
+function resetGrid (event) {
   for (let i = 0; i < 6; i++) {
     for (let j = 0; j < 7; j++) {
       grid[i][j] = null
@@ -186,8 +178,6 @@ function resetGrid(event) {
       winnerName.innerText = ''
       const winnerDisplay = document.getElementById('winner-display')
       winnerDisplay.style.display = 'None'
-      document.getElementById('red-score').innerText = ''
-      document.getElementById('yellow-score').innerText = ''
       document.getElementById('scoreboard').style.display = 'None'
       document.getElementById(`row${i}-col${j}`).addEventListener('click', takeTurn)
     }
@@ -196,5 +186,4 @@ function resetGrid(event) {
   gameState.turn = 0
   gameState.emptySpaces = 42
   console.log('resetGame was called')
-  fetchScores()
 }
