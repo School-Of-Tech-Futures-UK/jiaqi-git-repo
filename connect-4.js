@@ -80,16 +80,6 @@ function takeTurn (event) {
     // update score and send to server
     scores[winner] += gameState.emptySpaces
     postScores (scores)
-    //fetch('http://localhost:3000/connect-4', {
-    //  method: 'POST',
-    //  headers: {
-    //    'Content-Type': 'application/json'
-    //  },
-    //  body: JSON.stringify(scores)
-    //})
-    //  .then(response => response.json())
-    //  .then(data => console.log('Success:', data))
-
     const winnerName = document.getElementById('winner-name')
     winnerName.innerText = winner
     const winnerDisplay = document.getElementById('winner-display')
