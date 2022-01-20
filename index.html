@@ -9,10 +9,11 @@
     </head>
     <body>
         <h1> C<span style="color:yellow">o</span>nnect <span style="color:red">4</span> </h1>
-        </br></br><p id = "scoreboard"style ="display: none;"></p></br>
-
+        
+        <ol id = "scoreboard"></ol>
+        
         <div id="grid">
-            <p id="winner-display">The winner is <span id="winner-name"></span>🏆</p>
+            <p id="winner-display">The winner is <span id="winner-name"></span></p>
             <div class="row">
                 <div class="col" id="row0-col0" onClick="takeTurn(event)"></div>
                 <div class="col" id="row0-col1" onClick="takeTurn(event)"></div>
@@ -67,22 +68,20 @@
                 <div class="col" id="row5-col5" onClick="takeTurn(event);"></div>
                 <div class="col" id="row5-col6" onClick="takeTurn(event);"></div>
             </div>
+
         </div>
 
         <input id="resetButton" type="button" value="Reset" onclick="resetGrid(event)">
 
         <div></br></br>
-            <label>Please Enter player 1(red) name:</label><br>
-            <input type="text" id="redName" ><br>
-            <label>Please Enter player 2(yellow) name:</label><br>
-            <input type="text" id="yellowName"><br>
+            <label>player 1(red) name:</label>
+            <input type="text" id="redName" >
+            <label>player 2(yellow) name:</label>
+            <input type="text" id="yellowName"> <br>
             <button id = "Namebutton" onClick= "RecordNames();">Submit</button>
     
         </div>
         </br>
-
-
-
         <script src="connect-4.js"type="text/javascript"></script> 
 
         </body>

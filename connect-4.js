@@ -1,7 +1,7 @@
 /* eslint-disable no-throw-literal */
 
-//const name1 = window.prompt('Player 1(red) please enter your name: ') + '(red)'
-//const name2 = window.prompt('Player 2(yellow) please enter your name: ') + '(yellow)'
+// const name1 = window.prompt('Player 1(red) please enter your name: ') + '(red)'
+// const name2 = window.prompt('Player 2(yellow) please enter your name: ') + '(yellow)'
 
 // board as a multidimensional array where game moves will be stored
 const grid = [
@@ -26,12 +26,43 @@ const gameState = {
 }
 
 function RecordNames (e) {
-  gameState.redName = document.getElementById('redName').value + " (Red)"
-  gameState.yellowName = document.getElementById('yellowName').value + " (Yellow)"
+  gameState.redName = document.getElementById('redName').value + ' (Red)'
+  gameState.yellowName = document.getElementById('yellowName').value + ' (Yellow)'
 }
 
 // Object to store scores
 const scores = { name: '', score: 0 }
+
+// Function to post scores to the server
+async function postScores (scores) {
+  const resp = await fetch('http://localhost:3000/connect-4', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(scores)
+  })
+  const respJson = resp.json()
+  console.log('Success:', respJson)
+}
+
+// function to get scores from server
+async function fetchScores () {
+  const resp = await fetch('http://localhost:3000/connect-4')
+  const respJson = await resp.json()
+  const sortedScores = (respJson.sort((a, b) => b.score - a.score))
+  const scoreboard = document.getElementById('scoreboard')
+  scoreboard.innerHTML =''
+  scoreboard.style.display ='block'
+  for (let i = 0; i < sortedScores.length; i++) {
+    if (i < 10) {
+      const listHighscores=document.createElement('li')
+      listHighscores.innerHTML= `${sortedScores[i].name}: ${sortedScores[i].score}`
+      scoreboard.appendChild(listHighscores)
+    }
+  }
+  console.log(sortedScores)
+}
 
 // Turn function
 function takeTurn (event) {
@@ -69,17 +100,13 @@ function takeTurn (event) {
       scores.name = gameState.yellowName
       scores.score = gameState.emptySpaces
     }
-    postScores (scores)
-    fetchScores()
+    postScores(scores).then(fetchScores)
     // scores[winner] += gameState.emptySpaces
     const winnerName = document.getElementById('winner-name')
     winnerName.innerText = winner
     const winnerDisplay = document.getElementById('winner-display')
     winnerDisplay.style.display = 'block'
     winnerDisplay.style.backgroundColor = winner
-    // document.getElementById('red-score').innerText = scores.red
-    // document.getElementById('yellow-score').innerText = scores.yellow
-    // document.getElementById('scoreboard').style.display = 'block'
 
     for (let rowIndex = 0; rowIndex < row; rowIndex++) {
       for (let colIndex = 0; colIndex < column; colIndex++) {
@@ -100,6 +127,7 @@ function getLowestAvailableRowInColumn (ColumnNumber, myGrid) {
   }
   return null
 }
+
 
 // Function to check if 4 cells are equal
 function checkLineOfFour (a, b, c, d) {

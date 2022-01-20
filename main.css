@@ -82,3 +82,30 @@ body {
   font-weight: 300;
   font-family: sans-serif;
 }
+
+ul {
+  background: #3399ff;
+  padding: 20px;
+}
+
+ul li {
+  background: #cce5ff;
+  margin: 5px;
+}
+
+#score-title{
+  font-family: "Lobster";
+  font-size: 30px;
+  text-align: center;
+  margin: 3px auto;
+}
+
+#resetButton{
+  font-family: sans-serif;
+  font-weight: 100;
+  letter-spacing: 0.1em;
+  background-color: blue;
+  cursor: pointer;
+  left: 50%;
+  top: 50%;
+}
