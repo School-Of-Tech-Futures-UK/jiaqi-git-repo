@@ -94,10 +94,11 @@ function takeTurn (event) {
       gameState.winnerName = gameState.redName
       postScores().then(fetchScores)
     } else if (winner === 'yellow') {
-      gameState.winnerName= gameState.redName
+      gameState.winnerName= gameState.yellowName
       postScores().then(fetchScores)
     }
     // scores[winner] += gameState.emptySpaces
+    fetchScores()
     const winnerName = document.getElementById('winner-name')
     winnerName.innerText = winner
     const winnerDisplay = document.getElementById('winner-display')
