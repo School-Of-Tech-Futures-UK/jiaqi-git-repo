@@ -20,9 +20,10 @@ const gameState = {
   playerTurn: 'red',
   emptySpaces: 42,
   turn: 0,
-  winner: '',
+  winnerName: '',
   redName: '',
-  yellowName: ''
+  yellowName: '',
+  winnerScore:0
 }
 
 function RecordNames (e) {
@@ -31,10 +32,11 @@ function RecordNames (e) {
 }
 
 // Object to store scores
-const scores = { name: '', score: 0 }
+//const scores = { name: '', score: 0 }
 
 // Function to post scores to the server
-async function postScores (scores) {
+async function postScores () {
+  const scores = { name: gameState.winnerName, score: gameState.winnerScore }
   const resp = await fetch('http://localhost:3000/connect-4', {
     method: 'POST',
     headers: {
@@ -42,8 +44,7 @@ async function postScores (scores) {
     },
     body: JSON.stringify(scores)
   })
-  const respJson = resp.json()
-  console.log('Success:', respJson)
+  console.log('Success:', resp)
 }
 
 // function to get scores from server
@@ -52,8 +53,8 @@ async function fetchScores () {
   const respJson = await resp.json()
   const sortedScores = (respJson.sort((a, b) => b.score - a.score))
   const scoreboard = document.getElementById('scoreboard')
-  scoreboard.innerHTML=''
-  scoreboard.style.display ='block'
+  scoreboard.innerHTML = ''
+  scoreboard.style.display = 'block'
   for (let i = 0; i < sortedScores.length; i++) {
     if (i < 10) {
       const listHighscores=document.createElement('li')
@@ -69,7 +70,6 @@ function takeTurn (event) {
   const id = event.target.id
   const colNum = id[8]
   const lowestAvailableRow = getLowestAvailableRowInColumn(colNum, grid)
-  console.log(`Lowest available row: ${lowestAvailableRow}`)
 
   // Alternate turns between yellow and red
   if (lowestAvailableRow !== null && checkWinner(grid) === null) {
@@ -87,20 +87,16 @@ function takeTurn (event) {
   }
   // Checking For Winner and display winner message
   const winner = checkWinner(grid)
-  if (winner) {
-    if (typeof winner !== 'string' || !['red', 'yellow', 'nobody'].includes(winner)) {
-      throw "Expecting 'checkWinner' to return null or one of the strings 'red', 'yellow' or 'nobody'. Actually received: " + winner
-    }
-
+  if (winner !== null) {
     // update score and send to server
+    gameState.winnerScore = gameState.emptySpaces
     if (winner === 'red') {
-      scores.name = gameState.redName
-      scores.score = gameState.emptySpaces
+      gameState.winnerName = gameState.redName
+      postScores().then(fetchScores)
     } else if (winner === 'yellow') {
-      scores.name = gameState.yellowName
-      scores.score = gameState.emptySpaces
+      gameState.winnerName= gameState.redName
+      postScores().then(fetchScores)
     }
-    postScores(scores).then(fetchScores)
     // scores[winner] += gameState.emptySpaces
     const winnerName = document.getElementById('winner-name')
     winnerName.innerText = winner
@@ -179,7 +175,6 @@ function checkWinner (grid) {
       }
     }
   }
-
   // check for no winners(when whole board!==null)
   let count = 0
   for (let i = 0; i < row; i++) {
@@ -214,4 +209,6 @@ function resetGrid (event) {
   gameState.turn = 0
   gameState.emptySpaces = 42
   console.log('resetGame was called')
+  gameState.winnerName=''
+  gameState.winnerScore=0
 }
