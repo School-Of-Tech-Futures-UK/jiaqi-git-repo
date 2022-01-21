@@ -52,7 +52,7 @@ async function fetchScores () {
   const respJson = await resp.json()
   const sortedScores = (respJson.sort((a, b) => b.score - a.score))
   const scoreboard = document.getElementById('scoreboard')
-  scoreboard.innerHTML =''
+  scoreboard.innerHTML=''
   scoreboard.style.display ='block'
   for (let i = 0; i < sortedScores.length; i++) {
     if (i < 10) {
@@ -106,7 +106,7 @@ function takeTurn (event) {
     winnerName.innerText = winner
     const winnerDisplay = document.getElementById('winner-display')
     winnerDisplay.style.display = 'block'
-    winnerDisplay.style.backgroundColor = winner
+    winnerDisplay.style.backgroundColor = 'lightblue'
 
     for (let rowIndex = 0; rowIndex < row; rowIndex++) {
       for (let colIndex = 0; colIndex < column; colIndex++) {
