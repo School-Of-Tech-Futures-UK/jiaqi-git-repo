@@ -109,3 +109,17 @@ ul li {
   left: 50%;
   top: 50%;
 }
+
+
+#myModal{
+  display:none;
+  width:30%;
+  height: auto;
+  position: fixed;
+  background-color:#3399ff;
+  top:15%;
+  left:35%;
+  z-index:100;
+  border-radius:1rem;
+
+}

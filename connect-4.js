@@ -31,9 +31,6 @@ function RecordNames (e) {
   gameState.yellowName = document.getElementById('yellowName').value + ' (Yellow)'
 }
 
-// Object to store scores
-//const scores = { name: '', score: 0 }
-
 // Function to post scores to the server
 async function postScores () {
   const scores = { name: gameState.winnerName, score: gameState.winnerScore }
@@ -65,6 +62,10 @@ async function fetchScores () {
   console.log(sortedScores)
 }
 
+
+document.getElementById('player-name').innerText = `${gameState.playerTurn}'s Turn`
+document.getElementById('turn-display').style.backgroundColor = 'red'
+
 // Turn function
 function takeTurn (event) {
   const id = event.target.id
@@ -79,10 +80,14 @@ function takeTurn (event) {
       grid[lowestAvailableRow][colNum] = 'red'
       document.getElementById(`row${lowestAvailableRow}-col${colNum}`).style.backgroundColor = 'red'
       gameState.playerTurn = 'yellow'
+      document.getElementById('player-name').innerText = `${gameState.playerTurn}'s Turn`
+      document.getElementById('turn-display').style.backgroundColor = 'yellow'
     } else {
       grid[lowestAvailableRow][colNum] = 'yellow'
       document.getElementById(`row${lowestAvailableRow}-col${colNum}`).style.backgroundColor = 'yellow'
       gameState.playerTurn = 'red'
+      document.getElementById('player-name').innerText = `${gameState.playerTurn}'s Turn`
+      document.getElementById('turn-display').style.backgroundColor = 'red'
     }
   }
   // Checking For Winner and display winner message
@@ -93,12 +98,15 @@ function takeTurn (event) {
     if (winner === 'red') {
       gameState.winnerName = gameState.redName
       postScores().then(fetchScores)
+      openModal()
     } else if (winner === 'yellow') {
       gameState.winnerName= gameState.yellowName
       postScores().then(fetchScores)
+      openModal()
     }
     // scores[winner] += gameState.emptySpaces
     fetchScores()
+    openModal()
     const winnerName = document.getElementById('winner-name')
     winnerName.innerText = winner
     const winnerDisplay = document.getElementById('winner-display')
@@ -212,4 +220,23 @@ function resetGrid (event) {
   console.log('resetGame was called')
   gameState.winnerName=''
   gameState.winnerScore=0
+  document.getElementById('player-name').innerText = `${gameState.playerTurn}'s Turn`
+  document.getElementById('turn-display').style.backgroundColor = 'red'
 }
+
+// Modal class functions
+const modal= document.getElementById("myModal")
+
+span= document.getElementById('bottom-close')
+span.onclick= function(){
+  modal.style.display="none"
+}
+
+function openModal(){
+  modal.style.display='block'
+}
+
+function callModal() {
+  $('#myModal').modal('show')
+}
+//const close =document.getElementsById('bottom-close')

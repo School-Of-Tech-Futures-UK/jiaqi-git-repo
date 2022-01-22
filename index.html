@@ -10,10 +10,12 @@
     <body>
         <h1> C<span style="color:yellow">o</span>nnect <span style="color:red">4</span> </h1>
         
-        <ol id = "scoreboard"></ol>
+
+
         
+        <!--<p id="winner-display">The winner is <span id="winner-name"></span></p>-->
         <div id="grid">
-            <p id="winner-display">The winner is <span id="winner-name"></span></p>
+            <p id="turn-display"> <span id="player-name"></span></p>
             <div class="row">
                 <div class="col" id="row0-col0" onClick="takeTurn(event)"></div>
                 <div class="col" id="row0-col1" onClick="takeTurn(event)"></div>
@@ -73,15 +75,31 @@
 
         <input id="resetButton" type="button" value="Reset" onclick="resetGrid(event)">
 
-        <div></br></br>
-            <label>player 1(red) name:</label>
-            <input type="text" id="redName" >
-            <label>player 2(yellow) name:</label>
-            <input type="text" id="yellowName"> <br>
-            <button id = "Namebutton" onClick= "RecordNames();">Submit</button>
-    
+
+            <div class="container">
+                <p>Enter your name to play</p>
+                    <input type="text" style="background-color:red" placeholder="Player 1 Name"  id="redName" >
+                    <input type="text" style="background-color:yellow" placeholder="Player 2 Name" id="yellowName">
+                    <button id="nameButton" onClick="RecordNames();">Play Game</button>
         </div>
-        </br>
+
+
+
+       <!--Modal-->
+       <div id="myModal" class="modal" role="dialog">
+           <!--Modal Content-->
+           <div class ="modal-content">
+               <h2 class= "modal-title">The winner is <span id="winner-name"></span></h2>
+           </div>
+           <div class= "modal-body">
+               <h3 id="modal-text">Scoreboard</h3>
+               <ol id = "scoreboard"></ol>
+           </div>
+           <div class="modal-footer">
+               <button type="button" id="bottom-close" data-dismiss="modal">Play Again</button>
+           </div>
+       </div>
+
         <script src="connect-4.js"type="text/javascript"></script> 
 
         </body>
