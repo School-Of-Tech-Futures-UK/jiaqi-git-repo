@@ -77,7 +77,7 @@ body {
 
 #scoreboard {
   display: none;
-  background-color: lightblue;
+  background-color:#3399ff ;
   color: black;
   font-weight: 300;
   font-family: sans-serif;
@@ -113,13 +113,40 @@ ul li {
 
 #myModal{
   display:none;
-  width:30%;
+  width:25%;
   height: auto;
   position: fixed;
   background-color:#3399ff;
   top:15%;
-  left:35%;
+  left:38%;
   z-index:100;
   border-radius:1rem;
+}
+
+#myModal .modal-content{
+  height:auto;
+}
+
+#myModal .modal-header{
+  height:auto;
+}
+
+#myModal .modal-title{
+  text-align:left;
+  padding-left:2rem;
+}
+
+#myModal #bottom-close{
+  background-color:rgba(54, 37, 209, 0.7);
+  border:0;
+  cursor: pointer;
+  left: 50%;
+  top: 50%;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+#myModal .modal-body{
+  background-image: url(https://media.giphy.com/media/2gtoSIzdrSMFO/giphy.gif);
 
 }

@@ -97,21 +97,24 @@ function takeTurn (event) {
     gameState.winnerScore = gameState.emptySpaces
     if (winner === 'red') {
       gameState.winnerName = gameState.redName
+      const winnerName = document.getElementById('winner-name')
+      winnerName.innerText = gameState.winnerName
+      document.getElementById('modal-header').style.backgroundColor='red'
       postScores().then(fetchScores)
       openModal()
     } else if (winner === 'yellow') {
-      gameState.winnerName= gameState.yellowName
+      gameState.winnerName = gameState.yellowName
+      const winnerName = document.getElementById('winner-name')
+      winnerName.innerText = gameState.winnerName
       postScores().then(fetchScores)
       openModal()
     }
     // scores[winner] += gameState.emptySpaces
     fetchScores()
     openModal()
-    const winnerName = document.getElementById('winner-name')
-    winnerName.innerText = winner
-    const winnerDisplay = document.getElementById('winner-display')
-    winnerDisplay.style.display = 'block'
-    winnerDisplay.style.backgroundColor = 'lightblue'
+    //const winnerDisplay = document.getElementById('winner-display')
+   // winnerDisplay.style.display = 'block'
+    //winnerDisplay.style.backgroundColor = 'lightblue'
 
     for (let rowIndex = 0; rowIndex < row; rowIndex++) {
       for (let colIndex = 0; colIndex < column; colIndex++) {
@@ -206,11 +209,11 @@ function resetGrid (event) {
     for (let j = 0; j < 7; j++) {
       grid[i][j] = null
       document.getElementById(`row${i}-col${j}`).style.backgroundColor = 'white'
-      const winnerName = document.getElementById('winner-name')
-      winnerName.innerText = ''
-      const winnerDisplay = document.getElementById('winner-display')
-      winnerDisplay.style.display = 'None'
-      document.getElementById('scoreboard').style.display = 'None'
+      //const winnerName = document.getElementById('winner-name')
+      //winnerName.innerText = ''
+      //const winnerDisplay = document.getElementById('winner-display')
+      //winnerDisplay.style.display = 'None'
+      //document.getElementById('scoreboard').style.display = 'None'
       document.getElementById(`row${i}-col${j}`).addEventListener('click', takeTurn)
     }
   }
