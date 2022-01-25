@@ -23,12 +23,12 @@ const gameState = {
   winnerName: '',
   redName: '',
   yellowName: '',
-  winnerScore:0
+  winnerScore: 0
 }
 
 function RecordNames (e) {
-  gameState.redName = document.getElementById('redName').value + ' (Red)'
-  gameState.yellowName = document.getElementById('yellowName').value + ' (Yellow)'
+  gameState.redName = document.getElementById('redName').value
+  gameState.yellowName = document.getElementById('yellowName').value
 }
 
 // Function to post scores to the server
@@ -54,14 +54,13 @@ async function fetchScores () {
   scoreboard.style.display = 'block'
   for (let i = 0; i < sortedScores.length; i++) {
     if (i < 10) {
-      const listHighscores=document.createElement('li')
-      listHighscores.innerHTML= `${sortedScores[i].name}: ${sortedScores[i].score}`
+      const listHighscores = document.createElement('li')
+      listHighscores.innerHTML = `${sortedScores[i].name}: ${sortedScores[i].score}`
       scoreboard.appendChild(listHighscores)
     }
   }
   console.log(sortedScores)
 }
-
 
 document.getElementById('player-name').innerText = `${gameState.playerTurn}'s Turn`
 document.getElementById('turn-display').style.backgroundColor = 'red'
@@ -94,28 +93,28 @@ function takeTurn (event) {
   const winner = checkWinner(grid)
   if (winner !== null) {
     // update score and send to server
-    gameState.winnerScore = gameState.emptySpaces
+    gameState.winnerScore += gameState.emptySpaces
     if (winner === 'red') {
       gameState.winnerName = gameState.redName
       const winnerName = document.getElementById('winner-name')
       winnerName.innerText = gameState.winnerName
-      document.getElementById('modal-header').style.backgroundColor='red'
+      document.getElementById('modal-header').style.backgroundColor = 'red'
       postScores().then(fetchScores)
       openModal()
     } else if (winner === 'yellow') {
       gameState.winnerName = gameState.yellowName
       const winnerName = document.getElementById('winner-name')
       winnerName.innerText = gameState.winnerName
+      document.getElementById('modal-header').style.backgroundColor = 'yellow'
       postScores().then(fetchScores)
       openModal()
+    } else if (winner === 'nobody') {
+      const winnerName = document.getElementById('winner-name')
+      winnerName.innerText = 'nobody'
+      document.getElementById('modal-header').style.backgroundColor = 'pink'
+      fetchScores()
+      openModal()
     }
-    // scores[winner] += gameState.emptySpaces
-    fetchScores()
-    openModal()
-    //const winnerDisplay = document.getElementById('winner-display')
-   // winnerDisplay.style.display = 'block'
-    //winnerDisplay.style.backgroundColor = 'lightblue'
-
     for (let rowIndex = 0; rowIndex < row; rowIndex++) {
       for (let colIndex = 0; colIndex < column; colIndex++) {
         document.getElementById(`row${rowIndex}-col${colIndex}`).removeAttribute('onclick')
@@ -135,7 +134,6 @@ function getLowestAvailableRowInColumn (ColumnNumber, myGrid) {
   }
   return null
 }
-
 
 // Function to check if 4 cells are equal
 function checkLineOfFour (a, b, c, d) {
@@ -209,11 +207,6 @@ function resetGrid (event) {
     for (let j = 0; j < 7; j++) {
       grid[i][j] = null
       document.getElementById(`row${i}-col${j}`).style.backgroundColor = 'white'
-      //const winnerName = document.getElementById('winner-name')
-      //winnerName.innerText = ''
-      //const winnerDisplay = document.getElementById('winner-display')
-      //winnerDisplay.style.display = 'None'
-      //document.getElementById('scoreboard').style.display = 'None'
       document.getElementById(`row${i}-col${j}`).addEventListener('click', takeTurn)
     }
   }
@@ -221,25 +214,25 @@ function resetGrid (event) {
   gameState.turn = 0
   gameState.emptySpaces = 42
   console.log('resetGame was called')
-  gameState.winnerName=''
-  gameState.winnerScore=0
+  gameState.winnerName = ''
+  gameState.winnerScore = 0
   document.getElementById('player-name').innerText = `${gameState.playerTurn}'s Turn`
   document.getElementById('turn-display').style.backgroundColor = 'red'
 }
 
 // Modal class functions
-const modal= document.getElementById("myModal")
+const modal = document.getElementById('myModal')
 
-span= document.getElementById('bottom-close')
-span.onclick= function(){
-  modal.style.display="none"
+span = document.getElementById('bottom-close')
+span.onclick = function () {
+  modal.style.display = 'none'
 }
 
-function openModal(){
-  modal.style.display='block'
+function openModal () {
+  modal.style.display = 'block'
 }
 
-function callModal() {
+function callModal () {
   $('#myModal').modal('show')
 }
-//const close =document.getElementsById('bottom-close')
+// const close =document.getElementsById('bottom-close')
