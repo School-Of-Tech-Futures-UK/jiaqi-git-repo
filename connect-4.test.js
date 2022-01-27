@@ -137,51 +137,6 @@ describe('when 4 same coloured discs are placed consecutively in a column', () =
 })
 
 
-describe('when 4 same coloured discs are placed consecutively in diagonals', () => {
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 4; j++) {
-      it(`checkWinner will return red`, () => {
-        let grid = [
-          [null, null, null, null, null, null, null],
-          [null, null, null, null, null, null, null],
-          [null, null, null, null, null, null, null],
-          [null, null, null, null, null, null, null],
-          [null, null, null, null, null, null, null],
-          [null, null, null, null, null, null, null]
-        ]
-        grid[i][j] = 'red'
-        grid[i + 1][j + 1] = 'red'
-        grid[i + 2][j + 2] = 'red'
-        grid[i + 3][j + 3] = 'red'
-        const actualOutput = checkWinner(grid)
-        expect(actualOutput).toBe('red');
-      })
-    }
-  }
-
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 4; j++) {
-      it(`checkWinner will return yellow`, () => {
-        let grid = [
-          [null, null, null, null, null, null, null],
-          [null, null, null, null, null, null, null],
-          [null, null, null, null, null, null, null],
-          [null, null, null, null, null, null, null],
-          [null, null, null, null, null, null, null],
-          [null, null, null, null, null, null, null]
-        ]
-        grid[i][j] = 'yellow'
-        grid[i + 1][j + 1] = 'yellow'
-        grid[i + 2][j + 2] = 'yellow'
-        grid[i + 3][j + 3] = 'yellow'
-        const actualOutput = checkWinner(grid)
-        expect(actualOutput).toBe('yellow')
-      })
-    }
-  }
-})
-
-
 // Tests for takeTurn Function:
 describe('when takeTurn function is called', () => {
   beforeEach(()=> {
