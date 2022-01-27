@@ -62,6 +62,9 @@ h1 {
 }
 
 
+#turn-display{
+  display:block;
+}
 
 #winner-display {
     display: none;
@@ -151,5 +154,3 @@ ul li {
   background-image: url(https://th.bing.com/th/id/R.99cb2cd6acced0bcf869dabe9a62e9b2?rik=NVo5bn%2f6mB0YPg&pid=ImgRaw&r=0);
 
 }
-
-

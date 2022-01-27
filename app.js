@@ -8,8 +8,13 @@ app.use(bodyParser.json()) // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })) // to support URL-encoded bodies
 app.use(express.json()) // to support JSON-encoded bodies
 app.use(cors())
+app.use(express.static(__dirname + '/'))
 
-let scores 
+app.get('/connect', function (req, res) {
+  res.sendFile(__dirname + '/index.html')
+})
+
+let scores
 
 async function loadScores () {
   const contents = await fs.readFile('./data.json', 'utf-8')
@@ -23,17 +28,18 @@ async function saveScores (scores) {
 }
 
 
-app.get('/connect-4', (req, res) => {
+app.get('/connect-4/scores', (req, res) => {
   res.json(scores)
 })
 
 
-loadScores ()
-app.post('/connect-4', (req, res) => {
+loadScores()
+app.post('/connect-4/scores', (req, res) => {
   data = req.body
   scores.push(data)
   saveScores(scores)
   res.send('')
 })
 
-app.listen(3000)
+app.listen(3002)
+
