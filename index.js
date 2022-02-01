@@ -124,9 +124,16 @@ for (let rowIndex = 0; rowIndex < 6; rowIndex++) {
   }
 }
 
+function resetAll(event){
+  location.reload()
+}
+
 // Bind the click event for the reset button.
 const resetButton = document.getElementById('resetButton')
 resetButton.addEventListener('click', resetGrid)
+
+const resetAllButton = document.getElementById('resetAllButton')
+resetAllButton.addEventListener('click', resetAll)
 
 const nameButton = document.getElementById('name-bottom-close')
 nameButton.addEventListener('click', RecordNames)
