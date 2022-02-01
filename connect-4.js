@@ -132,11 +132,14 @@ function getBoard () {
 }
 
 function resetGame () {
-  for (let i = 0; i < 6; i++) {
-    for (let j = 0; j < 7; j++) {
-      gameState.grid[i][j] = null
-    }
-  }
+  gameState.grid = [
+    [null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null]
+  ]
   gameState.playerTurn = 'red'
   gameState.turn = 0
   gameState.emptySpaces = 42

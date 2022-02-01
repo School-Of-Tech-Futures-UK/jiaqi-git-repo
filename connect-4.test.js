@@ -9,10 +9,10 @@ const {
   gameState
 } = require('./connect-4.js')
 
- //Testing checkWinner Function
+//Testing checkWinner Function
 let grid = []
 
- describe('When calling the checkWinner function', () => {
+describe('When calling the checkWinner function', () => {
   scenarios = [
     [[
       [null, null, null, null, null, null, null],
@@ -25,7 +25,7 @@ let grid = []
     [[
       [null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null],
-      ['red',null, null, null, null, null, null],
+      ['red', null, null, null, null, null, null],
       ['red', null, null, null, null, null, null],
       ['red', null, null, null, null, null, null],
       ['red', null, null, null, null, null, null]
@@ -51,8 +51,9 @@ let grid = []
     const actual = checkWinner(grid)
     expect(actual).toBe(expected)
   })
- })
+})
 
+// Test for all row win scenarios for both red and yellow
 describe('when 4 same coloured discs are placed consecutively in a row', () => {
   // arrange
   const scenarios = []
@@ -80,11 +81,11 @@ describe('when 4 same coloured discs are placed consecutively in a row', () => {
       scenarios.push([grid, color])
     }
   }
-  colIndex.forEach((colIndex)=> {
+  colIndex.forEach((colIndex) => {
     rowWins(colIndex.startCol, colIndex.endCol, color[0])
   })
 
-  colIndex.forEach((colIndex)=> {
+  colIndex.forEach((colIndex) => {
     rowWins(colIndex.startCol, colIndex.endCol, color[1])
   })
 
@@ -94,6 +95,7 @@ describe('when 4 same coloured discs are placed consecutively in a row', () => {
   })
 })
 
+// Test for all column win scenarios for both red and yellow
 describe('when 4 same coloured discs are placed consecutively in a column', () => {
   // arrange
   const scenarios = []
@@ -120,11 +122,11 @@ describe('when 4 same coloured discs are placed consecutively in a column', () =
       scenarios.push([grid, color])
     }
   }
-  rowIndex.forEach((rowIndex)=> {
+  rowIndex.forEach((rowIndex) => {
     colWins(rowIndex.startRow, rowIndex.endRow, color[0])
   })
 
-  rowIndex.forEach((rowIndex)=> {
+  rowIndex.forEach((rowIndex) => {
     colWins(rowIndex.startRow, rowIndex.endRow, color[1])
   })
   it.each(scenarios)('checkWinner should return red or yellow ', (grid, expected) => {
@@ -133,13 +135,14 @@ describe('when 4 same coloured discs are placed consecutively in a column', () =
   })
 })
 
+// Test for all diagonal wins scenarios for both red and yellow
 describe('when 4 same coloured discs are placed consecutively in a diagonal', () => {
   // arrange
-  let scenarios = []
-  let col = [0,1,2,3]
+  const scenarios = []
+  const col = [0, 1, 2, 3]
   let grid = []
-  color=['red', 'yellow']
-  
+  color = ['red', 'yellow']
+
   function checkDiag(col, color) {
     for (let i = 0; i < 3; i++) {
       grid = [
@@ -158,11 +161,11 @@ describe('when 4 same coloured discs are placed consecutively in a diagonal', ()
     }
   }
   
-  col.forEach( (col)=> {
+  col.forEach((col) => {
     checkDiag(col, color[0])
   })
   
-  col.forEach( (col)=> {
+  col.forEach((col) => {
     checkDiag(col, color[1])
   })
   it.each(scenarios)('checkWinner should return red or yellow ', (grid, expected) => {
@@ -171,13 +174,13 @@ describe('when 4 same coloured discs are placed consecutively in a diagonal', ()
   })
 })
 
-
+// Test for all reverse diagonal wins scenarios for both red and yellow
 describe('when 4 same coloured discs are placed consecutively in a reverse diagonal', () => {
   // arrange
-  let scenarios = []
-  let col = [6,5,4,3]
+  const scenarios = []
+  const col = [6, 5, 4, 3]
   let grid = []
-  color=['red', 'yellow']
+  const color = ['red', 'yellow']
   function checkReverseDiag(col, color) {
     for (let i = 0; i < 3; i++) {
       grid = [
@@ -195,10 +198,10 @@ describe('when 4 same coloured discs are placed consecutively in a reverse diago
       scenarios.push([grid, color])
     }
   }
-  col.forEach( (col)=> {
+  col.forEach((col) => {
     checkReverseDiag(col, color[0])
   })
-  col.forEach( (col)=> {
+  col.forEach((col) => {
     checkReverseDiag(col, color[1])
   })
   it.each(scenarios)('checkWinner should return red or yellow ', (grid, expected) => {
@@ -209,7 +212,7 @@ describe('when 4 same coloured discs are placed consecutively in a reverse diago
 
 // Tests for takeTurn Function:
 describe('when takeTurn function is called', () => {
-  beforeEach(()=> {
+  beforeEach(() => {
     gameState.playerTurn = 'red'
     gameState.grid = [
       [null, null, null, null, null, null, null],
@@ -222,11 +225,11 @@ describe('when takeTurn function is called', () => {
     gameState.currentGuess = null
     gameState.gameOver = false
   })
-  it('should return red if current player is yellow',() =>{
-    let row=1
-    let col=2
+  it('should return red if current player is yellow', () => {
+    const row = 1
+    const col = 2
     gameState.playerTurn = 'yellow'
-    const expectedOutput ='red'
+    const expectedOutput = 'red'
     const actualOutput = takeTurn(row, col)
     expect(actualOutput).toBe(expectedOutput)
   })

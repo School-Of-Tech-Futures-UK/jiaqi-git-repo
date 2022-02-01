@@ -126,6 +126,20 @@ ul li {
   border-radius:1rem;
 }
 
+
+
+#myModalPlayer{
+  display:block;
+  width:25%;
+  height: auto;
+  position: fixed;
+  background-color:rgb(152, 16, 231) ;
+  top:25%;
+  left:38%;
+  z-index:100;
+  border-radius:1rem;
+}
+
 #myModal .modal-content{
   height:auto;
 }
@@ -153,4 +167,18 @@ ul li {
 #myModal .modal-body{
   background-image: url(https://th.bing.com/th/id/R.99cb2cd6acced0bcf869dabe9a62e9b2?rik=NVo5bn%2f6mB0YPg&pid=ImgRaw&r=0);
 
+}
+
+.fall{
+  animation-name: fall-animation;
+  animation-duration: 500ms;
+}
+
+@keyframes fall-animation{
+  from {
+    transform: translateY(-500px)
+  }
+  to{
+    transform: translateY(0)
+  }
 }

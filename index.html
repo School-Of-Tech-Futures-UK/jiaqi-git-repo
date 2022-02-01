@@ -72,17 +72,41 @@
 
         <input id="resetButton" type="button" value="Reset">
 
-
+          <!-- 
             <div class="container">
                 <p>Enter your name to play</p>
                     <input type="text" style="background-color:red" placeholder="Player 1 Name"  id="redName" >
                     <input type="text" style="background-color:yellow" placeholder="Player 2 Name" id="yellowName">
                     <button id="nameButton">Play Game</button>
         </div>
+       -->
+
+    <!-- playerName modal -->
+    <div id="myModalPlayer" class="Playermodal" role="dialog">
+        <!--Modal Content-->
+        <div class ="Playermodal-content">
+            <div id= "Playermodal-header">
+                <h2 class= "Playermodal-title">Please Enter Your Name to Play😊</h2>
+            </div>
+            <div class= "Playermodal-body">
+                <form id="PlayernameForm">
+                    <div class="form-group">
+                        <input type="text" style="background-color:red" placeholder="Player 1 Name"  id="redName" >
+                        <input type="text" style="background-color:yellow" placeholder="Player 2 Name" id="yellowName">
+                    </div>
+                </form>
+            </div>
+         </div>
+            <div class="player-modal-footer">
+                <button type="button" id="name-bottom-close" data-dismiss="playerModal">Play</button>
+            </div>
+        </div>
+       
 
 
 
-       <!--Modal-->
+
+       <!--Modal-Winner&scoreBoard-->
        <div id="myModal" class="modal" role="dialog">
            <!--Modal Content-->
            <div class ="modal-content">
