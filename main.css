@@ -29,17 +29,6 @@ h1 {
    }
 }
 
-
-#grid{
-    margin: 20px auto;
-    display: table;
-    width: 300px;
-    height: 500px;
-    padding: 10px;
-    background: blue;
-    border-radius: 5px;
-  }
-
 .col {
     width: 10px;
     height: 70px;
@@ -53,12 +42,22 @@ h1 {
     border-radius: 50%
 }
 
-
 .row {
     width: 500px;
     margin: 3px auto;
     display: flex;
     justify-content: center;
+}
+
+#grid{
+  margin: 20px auto;
+  display: table;
+  width: 300px;
+  height: 500px;
+  padding: 10px;
+  background: blue;
+  border-radius: 5px;
+  flex-direction: row;
 }
 
 
@@ -182,7 +181,7 @@ ul li {
 
 .fall{
   animation-name: fall-animation;
-  animation-duration: 500ms;
+  animation-duration: 600ms;
 }
 
 @keyframes fall-animation{
@@ -193,3 +192,8 @@ ul li {
     transform: translateY(0)
   }
 }
+
+
+
+
+

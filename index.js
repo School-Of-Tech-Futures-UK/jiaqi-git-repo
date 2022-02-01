@@ -62,7 +62,7 @@ function RecordNames (event) {
   gameState.yellowName = document.getElementById('yellowName').value
 }
 
-function positionClick (event) {
+async function positionClick (event) {
   const id = event.target.id
   const column = id[8]
   const lowestavailablerow = getLowestAvailableRowInColumn(column, gameState.grid)
@@ -104,6 +104,7 @@ function positionClick (event) {
     console.log(gameState)
   }
 }
+
 // The reset button was clicked, call the game's reset function then reset the DOM.
 function resetGrid (event) {
   resetGame()
