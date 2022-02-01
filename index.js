@@ -1,3 +1,8 @@
+document.getElementById('player-name').innerText ="red's Turn"
+document.getElementById('turn-display').style.backgroundColor ='red'
+const audio = new Audio('discSound.mp3')
+
+
 // Function to post scores to the server
 async function postScores () {
   const scores = { name: gameState.winnerName, score: gameState.winnerScore }
@@ -29,10 +34,6 @@ async function fetchScores () {
   console.log(sortedScores)
 }
 
-
-document.getElementById('player-name').innerText ="red's Turn"
-document.getElementById('turn-display').style.backgroundColor ='red'
-
 function clearBoard() {
   for (let rowIndex = 0; rowIndex < 6; rowIndex++) {
     for (let columnIndex = 0; columnIndex < 7; columnIndex++) {
@@ -51,6 +52,7 @@ function drawBoard (grid) {
       const color = grid[rowIndex][columnIndex]
       document.getElementById(`row${rowIndex}-col${columnIndex}`).style.backgroundColor = color
       document.getElementById(`row${rowIndex}-col${columnIndex}`).classList.add('fall')
+      audio.play()
     }
   }
 }
