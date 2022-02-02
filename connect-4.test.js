@@ -9,6 +9,8 @@ const {
   gameState
 } = require('./connect-4.js')
 
+const api = require('./client.js')
+
 //Testing checkWinner Function
 let grid = []
 
@@ -265,3 +267,4 @@ describe('When getLowestAvailableRowInColumn function is called', () => {
     expect(output).toBe(expectedOutput)
   })
 })
+
