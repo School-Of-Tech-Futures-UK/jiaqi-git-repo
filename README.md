@@ -10,7 +10,9 @@ This is a connect4 game created using Javascript, HTML and CSS
 * **index.html** : html file for game board
 * **main.css** : styling of html file
 * **connect-4.test.js** :code for testing of game logic
-* **discSound.mp3** : Sound effects obtained from https://www.zapsplat.com
+* **discSound.mp3** : Sound effect obtained from https://www.zapsplat.com
+*  **click.mp3** : Sound effect obtained from https://www.zapsplat.com
+*  **winner.mp3** : Sound effect obtained from https://www.zapsplat.com
 
 ## Cloning Repository
 
