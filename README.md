@@ -33,7 +33,7 @@ Open the html file in your browser or type http://localhost:5500/index.html into
 * click on a column to place a disc 
 * Turns alternate
 * The game ends when a player places a winning combination of four consecutive discs either in a row, column or diagnoal
-* The winner score is calculated by subtracting the numbers of moves made from 42
+* The winner score is calculated by subtracting the number of moves made from 42
 * The winner name will be added to a highscore board
 * press reset to reset the board and play again or reset all to start afresh a new game with new players
 
