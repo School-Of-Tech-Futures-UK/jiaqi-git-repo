@@ -5,7 +5,7 @@ This is a connect4 game created using Javascript, HTML and CSS
 ## Key Files
 * **connect-4.js** : Code for game logic
 * **index.js** : code for DOM manipulation
-* **client.js**: code for making front end api calls to post and retrive highscores
+* **client.js**: code for making front end api calls to post and retrieve highscores
 * **app.js**: back end server created using express framework
 * **index.html** : html file for game board
 * **main.css** : styling of html file
@@ -30,7 +30,7 @@ Open the html file in your browser or type http://localhost:5500/index.html into
 * Enter player name to start playing. By default player 1 is red and player 2 is yellow and red will go first
 * click on a column to place a disc 
 * Turns alternate
-* The game ends when a player places a winning combination of four consecutive discs either in a row, column or diagnoal
+* The game ends when a player places a winning combination of fourconsecutive discs either in a row, column or diagnoal
 * The winner name will be added to a highscore board
 * press reset to reset the board and play again or reset all to start afresh a new game with new players
 
