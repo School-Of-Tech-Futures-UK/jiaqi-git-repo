@@ -17,7 +17,7 @@ h1 {
   text-transform: uppercase;
   font-size: 8em;
   white-space: nowrap;
-  font-size: 10vw;
+  font-size: 8vw;
   z-index: 1000;
   font-family: 'Bangers', cursive;
   text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.7);
@@ -78,7 +78,7 @@ body {
 
 #scoreboard {
   display: none;
-  background-color:rgba(0, 0, 255, 0.6)  ;
+  background-color:rgba(160, 160, 240, 0.6)  ;
   color: black;
   font-weight: 300;
   font-family: sans-serif;
@@ -128,11 +128,12 @@ ul li {
   width:25%;
   height: auto;
   position: fixed;
-  background-color:rgb(152, 16, 231) ;
+  background-color:rgb(190, 118, 231) ;
   top:25%;
   left:38%;
   z-index:100;
   border-radius:1rem;
+  flex-direction: column
 }
 
 
@@ -142,11 +143,12 @@ ul li {
   width:25%;
   height: auto;
   position: fixed;
-  background-color:rgb(152, 16, 231) ;
-  top:25%;
+  background-color:rgb(190, 118, 231) ;
+  top:35%;
   left:38%;
   z-index:100;
   border-radius:1rem;
+  flex-direction: row
 }
 
 #myModal .modal-content{

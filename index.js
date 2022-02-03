@@ -1,11 +1,14 @@
+/* eslint-disable no-undef */
 document.getElementById('player-name').innerText ="red's Turn"
 document.getElementById('turn-display').style.backgroundColor ='red'
 const audio = new Audio('discSound.mp3')
+const click = new Audio('click.mp3')
+const winner = new Audio('winner.mp3')
 
-function clearBoard() {
+function clearBoard () {
   for (let rowIndex = 0; rowIndex < 6; rowIndex++) {
     for (let columnIndex = 0; columnIndex < 7; columnIndex++) {
-      document.getElementById(`row${rowIndex}-col${columnIndex}`).style.backgroundColor = "white"
+      document.getElementById(`row${rowIndex}-col${columnIndex}`).style.backgroundColor = 'white'
     }
   }
 }
@@ -26,6 +29,7 @@ function drawBoard (grid) {
 }
 
 function RecordNames (event) {
+  click.play()
   gameState.redName = document.getElementById('redName').value
   gameState.yellowName = document.getElementById('yellowName').value
   // Bind the click events for the grid.
@@ -82,6 +86,7 @@ async function positionClick (event) {
 
 // The reset button was clicked, call the game's reset function then reset the DOM.
 function resetGrid (event) {
+  click.play()
   resetGame()
   for (let i = 0; i < 6; i++) {
     for (let j = 0; j < 7; j++) {
@@ -94,8 +99,8 @@ function resetGrid (event) {
   document.getElementById('turn-display').style.backgroundColor = 'red'
 }
 
-
-function resetAll(event){
+function resetAll (event) {
+  click.play()
   location.reload()
 }
 
@@ -112,10 +117,12 @@ nameButton.addEventListener('click', RecordNames)
 // Modal class functions
 const modal = document.getElementById('myModal')
 document.getElementById('bottom-close').onclick = function () {
+  click.play()
   modal.style.display = 'none'}
 
 function openModal () {
   modal.style.display = 'block'
+  winner.play()
 }
 
 const playerModal = document.getElementById('myModalPlayer')

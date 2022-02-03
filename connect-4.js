@@ -151,9 +151,7 @@ function resetGame () {
 }
 
 if (typeof exports === 'object') {
-  console.log("Running in Node")
-  // Node. Does not work with strict CommonJS, but only CommonJS-like 
-  // environments that support module.exports, like Node.
+  console.log('Running in Node')
   module.exports = {
     checkWinner,
     resetGame,
@@ -164,5 +162,5 @@ if (typeof exports === 'object') {
     gameState
   }
 } else {
-  console.log("Running in Browser")
+  console.log('Running in Browser')
 }

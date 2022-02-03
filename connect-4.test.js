@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Importing module
 const {
   checkWinner,
@@ -9,9 +10,7 @@ const {
   gameState
 } = require('./connect-4.js')
 
-const api = require('./client.js')
-
-//Testing checkWinner Function
+// Testing checkWinner Function
 let grid = []
 
 describe('When calling the checkWinner function', () => {
@@ -145,7 +144,7 @@ describe('when 4 same coloured discs are placed consecutively in a diagonal', ()
   let grid = []
   color = ['red', 'yellow']
 
-  function checkDiag(col, color) {
+  function checkDiag (col, color) {
     for (let i = 0; i < 3; i++) {
       grid = [
         [null, null, null, null, null, null, null],
@@ -162,11 +161,11 @@ describe('when 4 same coloured discs are placed consecutively in a diagonal', ()
       scenarios.push([grid, color])
     }
   }
-  
+
   col.forEach((col) => {
     checkDiag(col, color[0])
   })
-  
+
   col.forEach((col) => {
     checkDiag(col, color[1])
   })
@@ -183,7 +182,7 @@ describe('when 4 same coloured discs are placed consecutively in a reverse diago
   const col = [6, 5, 4, 3]
   let grid = []
   const color = ['red', 'yellow']
-  function checkReverseDiag(col, color) {
+  function checkReverseDiag (col, color) {
     for (let i = 0; i < 3; i++) {
       grid = [
         [null, null, null, null, null, null, null],
@@ -239,7 +238,6 @@ describe('when takeTurn function is called', () => {
 
 // Test for getLowestAvailableRowInColumn function
 describe('When getLowestAvailableRowInColumn function is called', () => {
-  
   beforeEach(() => {
     grid = [
       [null, null, null, null, null, null, null],
@@ -267,4 +265,3 @@ describe('When getLowestAvailableRowInColumn function is called', () => {
     expect(output).toBe(expectedOutput)
   })
 })
-

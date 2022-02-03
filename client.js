@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Function to post scores to the server
 async function postScores () {
   const scores = { name: gameState.winnerName, score: gameState.winnerScore }
