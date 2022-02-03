@@ -126,11 +126,6 @@ function checkWinner (grid) {
   return null
 }
 
-function getBoard () {
-  console.log('getBoard was called')
-  return gameState.grid
-}
-
 function resetGame () {
   gameState.grid = [
     [null, null, null, null, null, null, null],
@@ -158,7 +153,6 @@ if (typeof exports === 'object') {
     getLowestAvailableRowInColumn,
     checkLineOfFour,
     takeTurn,
-    getBoard,
     gameState
   }
 } else {

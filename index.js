@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 document.getElementById('player-name').innerText ="red's Turn"
 document.getElementById('turn-display').style.backgroundColor ='red'
-const audio = new Audio('discSound.mp3')
-const click = new Audio('click.mp3')
-const winner = new Audio('winner.mp3')
+const audio = new Audio('./sounds/discSound.mp3')
+const click = new Audio('./sounds/click.mp3')
+const winner = new Audio('./sounds/winner.mp3')
 
 function clearBoard () {
   for (let rowIndex = 0; rowIndex < 6; rowIndex++) {
