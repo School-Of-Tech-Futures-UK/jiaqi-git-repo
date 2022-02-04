@@ -20,7 +20,7 @@ Clone the repository by running the following code in a terminal
 ```
 git clone https://github.com/School-Of-Tech-Futures-UK/jiaqi-git-repo.git
 ```
-# Running the files
+## Running the files
 
 To start the server run:
 ```
@@ -28,7 +28,7 @@ node app.js
 ```
 Open the html file in your browser or type http://localhost:5500/index.html into your browser to start playing
 
-# Game Rules 
+## Game Rules 
 * Enter player name to start playing. By default player 1 is red and player 2 is yellow and red will go first
 * click on a column to place a disc 
 * Turns alternate
